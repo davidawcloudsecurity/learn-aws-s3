@@ -1,5 +1,9 @@
 # learn-aws-s3
 
+### How to 
+- [ ] https://catalog.workshops.aws/s3demystify/en-US
+- [ ] https://d1.awsstatic.com/events/Summits/awsreinforce2023/DAP372_Demystifying-Amazon-S3-authentication-authorization-and-encryption.pdf
+
 ### How to centralize s3 bucket
 ![image](https://github.com/user-attachments/assets/bc35b306-6569-42ed-becc-1023643a6cba)
 ### How to upload multiple files to s3 bucket
