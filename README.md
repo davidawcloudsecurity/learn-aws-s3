@@ -1,6 +1,7 @@
 # learn-aws-s3
 
 ### How to 
+- [ ] https://catalog.workshops.aws/aws101/en-US/1-getting-started/01-architecture
 - [ ] https://catalog.workshops.aws/s3demystify/en-US
 - [ ] https://d1.awsstatic.com/events/Summits/awsreinforce2023/DAP372_Demystifying-Amazon-S3-authentication-authorization-and-encryption.pdf
 - [ ] https://aws.amazon.com/appstream2/getting-started/isv-workshops/saas/module-1/
