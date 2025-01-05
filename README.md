@@ -44,6 +44,7 @@
 }
 ```
 ### Create s3 bucket policy to allow iam:user access subfolder within a folder or a role to access bucket
+https://demo-bucket-3.s3.us-east-1.amazonaws.com/123/dataset/ctf03.flag
 ```bash
 {
     "Version": "2012-10-17",
