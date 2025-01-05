@@ -1,5 +1,105 @@
 # learn-aws-s3
 
+### Create s3 bucket policy to allow iam:user access bucket
+```bash
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "arn:aws:iam::0123456789012:user/exampleuser"
+            },
+            "Action": [
+                "s3:GetObject",
+                "s3:PutObject",
+                "s3:ListBucket",
+                "s3:DeleteObject"
+            ],
+            "Resource": [
+                "arn:aws:s3:::demo-bucket-1",
+                "arn:aws:s3:::demo-bucket-1/*"
+            ]
+        }
+    ]
+}
+```
+### Create s3 bucket policy to get, put and not list iam:user access subfolder only
+```bash
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "arn:aws:iam::0123456789012:user/exampleuser"
+            },
+            "Action": [
+                "s3:GetObject",
+                "s3:PutObject"
+            ],
+            "Resource": "arn:aws:s3:::demo-bucket-2/dataset/*"
+        }
+    ]
+}
+```
+### Create s3 bucket policy to allow iam:user access subfolder within a folder or a role to access bucket
+```bash
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "arn:aws:iam::0123456789012:user/exampleuser"
+            },
+            "Action": "s3:ListBucket",
+            "Resource": [
+                "arn:aws:s3:::demo-bucket-3/*/dataset/*",
+                "arn:aws:s3:::demo-bucket-3"
+            ],
+            "Condition": {
+                "StringLike": {
+                    "s3:prefix": "*/dataset/*"
+                }
+            }
+        },
+        {
+            "Effect": "Deny",
+            "Principal": {
+                "AWS": "arn:aws:iam::0123456789012:user/exampleuser"
+            },
+            "Action": "s3:*",
+            "Resource": [
+                "arn:aws:s3:::demo-bucket-3",
+                "arn:aws:s3:::demo-bucket-3/*"
+            ],
+            "Condition": {
+                "StringNotLike": {
+                    "s3:prefix": "*/dataset/*"
+                }
+            }
+        },
+        {
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "arn:aws:iam::0123456789012:role/s3role"
+            },
+            "Action": [
+                "s3:GetObject",
+                "s3:PutObject",
+                "s3:ListBucket",
+                "s3:DeleteObject"
+            ],
+            "Resource": [
+                "arn:aws:s3:::demo-bucket-3/*",
+                "arn:aws:s3:::demo-bucket-3"
+            ]
+        }
+    ]
+}
+```
+
 ### How to 
 - [ ] https://catalog.workshops.aws/aws101/en-US/1-getting-started/01-architecture
 - [ ] https://catalog.workshops.aws/s3demystify/en-US
