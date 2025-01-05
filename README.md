@@ -43,6 +43,46 @@
     ]
 }
 ```
+or
+```bash
+{
+	"Version": "2012-10-17",
+	"Statement": [
+		{
+			"Effect": "Allow",
+			"Principal": {
+				"AWS": "arn:aws:iam::0123456789012:user/exampleuser"
+			},
+			"Action": "s3:ListBucket",
+			"Resource": [
+				"arn:aws:s3:::demo-bucket-2/dataset/*",
+				"arn:aws:s3:::demo-bucket-2"
+			],
+			"Condition": {
+				"StringLike": {
+					"s3:prefix": "dataset/*"
+				}
+			}
+		},
+		{
+			"Effect": "Deny",
+			"Principal": {
+				"AWS": "arn:aws:iam::0123456789012:user/exampleuser"
+			},
+			"Action": "s3:*",
+			"Resource": [
+				"arn:aws:s3:::demo-bucket-2",
+				"arn:aws:s3:::demo-bucket-2/*"
+			],
+			"Condition": {
+				"StringNotLike": {
+					"s3:prefix": "dataset/*"
+				}
+			}
+		}
+	]
+}
+```
 ### Create s3 bucket policy to allow iam:user access subfolder within a folder or a role to access bucket
 https://demo-bucket-3.s3.us-east-1.amazonaws.com/123/dataset/ctf03.flag
 ```bash
